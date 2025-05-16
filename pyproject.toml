@@ -1,0 +1,5 @@
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+include = ["convert.py", "lib/**/*.py"]
+exclude = ["__pycache__", ".venv", "build", "dist"]
