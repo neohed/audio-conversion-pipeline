@@ -5,6 +5,7 @@ from lib.audio_utils import (
     convert_to_flac,
     copy_file,
     copy_largest_jpg,
+    apply_album_art_if_missing,
 )
 
 with open("config.json") as f:
@@ -67,6 +68,8 @@ def main():
 
             # After processing audio files, copy best album art
             copy_largest_jpg(album, dest_album_path)
+            apply_album_art_if_missing(dest_album_path)
+
 
 if __name__ == "__main__":
     main()

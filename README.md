@@ -24,7 +24,7 @@ This project is a lightweight, Python-based utility for batch-converting `.wmv` 
 git clone https://github.com/your-username/audio-conversion-pipeline.git
 cd audio-conversion-pipeline
 python -m venv .venv
-source .venv/bin/activate        # or `.venv\Scripts\Activate` on Windows
+source .venv/bin/activate        # or `.venv/Scripts/activate` on Windows
 pip install -r requirements.txt
 ```
 

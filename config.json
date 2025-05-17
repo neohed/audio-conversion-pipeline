@@ -1,8 +1,7 @@
 {
-  "source_dir": "C:/Music",
-  "dest_dir": "C:/tmp/music",
+  "source_dir": "D:/Music",
+  "dest_dir": "D:/tmp/music",
   "artists": [
-    "Aerosmith",
     "Alpha"
   ]
 }
