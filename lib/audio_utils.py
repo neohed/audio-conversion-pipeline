@@ -18,15 +18,14 @@ def is_compatible_audio(file_path: Path) -> bool:
     return file_path.suffix.lower() in COMPATIBLE_EXTENSIONS
 
 
+def is_convertible_audio(file_path: Path) -> bool:
+    return file_path.suffix.lower() in {".wmv", ".wma"}
+
+
 def convert_to_flac(src_path: Path, dest_path: Path) -> None:
     """Convert a file to FLAC using ffmpeg."""
     dest_path.parent.mkdir(parents=True, exist_ok=True)
-    command = [
-        "ffmpeg", "-y",
-        "-i", str(src_path),
-        "-c:a", "flac",
-        str(dest_path)
-    ]
+    command = ["ffmpeg", "-y", "-i", str(src_path), "-c:a", "flac", str(dest_path)]
     try:
         subprocess.run(command, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         print(f"Converted: {src_path} -> {dest_path}")
@@ -107,11 +106,11 @@ def embed_album_art(file_path: Path, image_path: Path) -> None:
             audio.tags.delall("APIC")  # Remove existing
             audio.tags.add(
                 APIC(
-                    encoding=3,         # UTF-8
+                    encoding=3,  # UTF-8
                     mime=mime_type or "image/jpeg",
-                    type=3,             # front cover
+                    type=3,  # front cover
                     desc="cover",
-                    data=image_data
+                    data=image_data,
                 )
             )
             audio.save()
@@ -119,7 +118,9 @@ def embed_album_art(file_path: Path, image_path: Path) -> None:
 
         elif suffix in {".m4a", ".mp4"}:
             audio = MP4(file_path)
-            covr_type = MP4Cover.FORMAT_JPEG if image_path.suffix.lower() == ".jpg" else MP4Cover.FORMAT_PNG
+            covr_type = (
+                MP4Cover.FORMAT_JPEG if image_path.suffix.lower() == ".jpg" else MP4Cover.FORMAT_PNG
+            )
             audio["covr"] = [MP4Cover(image_data, imageformat=covr_type)]
             audio.save()
             print(f"[✔] Embedded artwork into {file_path.name}")

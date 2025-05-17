@@ -1,7 +1,7 @@
 {
-  "source_dir": "D:/Music",
-  "dest_dir": "D:/tmp/music",
-  "artists": [
-    "Alpha"
-  ]
+    "source_dir": "D:/Music",
+    "dest_dir": "D:/tmp/music",
+    "artists": [
+        "Basement Jaxx"
+    ]
 }
