@@ -8,6 +8,7 @@ from lib.audio_utils import (
     copy_largest_jpg,
     apply_album_art_if_missing,
 )
+from lib.metadata_utils import walk_and_normalise
 
 with open("config.json") as f:
     config = json.load(f)
@@ -62,6 +63,8 @@ def main():
                 continue
             dest_album_path = artist_dest_path / album.name
             process_album_folder(album, dest_album_path)
+
+    walk_and_normalise(DEST_DIR, dry_run=False)
 
 
 if __name__ == "__main__":
